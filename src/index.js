@@ -25,7 +25,7 @@ class TweetBox extends React.Component {
 		return (
 			<div>
 				<input type="textbox" id="tweetBox" onKeyPress={e => {if(e.key == "Enter"){this.tweet(e);}}} onChange={e => this.cngTbox(e)}/>
-				<button onClick={e => {this.tweet(e);}}>叫ぶ！</button>
+				<button onClick={e => {this.tweet(e);}}>叫ぶ！！！</button>
 				残り{this.state.length}文字
 			</div>
 		);
