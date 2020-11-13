@@ -2,12 +2,15 @@
   "name": "test",
   "version": "1.0.0",
   "description": "",
-  "main": "src/index.js",
+  "main": "src/client/index.js",
   "scripts": {
 		"start": "npm run server",
-    "server": "node src/server.js",
+    "server": "node dist/server/server.js",
     "dev": "webpack-dev-server --config ./config/webpack.config.js --open --mode development",
-    "build": "webpack --config ./config/webpack.config.js --mode development"
+    "build": "npm run build_client && npm run build_server",
+    "build_dev": "webpack --config ./config/webpack.config.js --mode development",
+    "build_client": "webpack --config ./config/webpack.config.js --mode production",
+    "build_server": "webpack --config ./config/webpack_server.config.js --mode production"
   },
   "author": "",
   "license": "ISC",
