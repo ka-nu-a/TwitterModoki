@@ -4,12 +4,13 @@
   "description": "",
   "main": "src/client/index.js",
   "scripts": {
-		"start": "npm run server",
+    "start": "npm run server",
     "server": "node dist/server/server.js",
     "dev": "webpack-dev-server --config ./config/webpack.config.js --open --mode development",
     "build": "npm run build_client && npm run build_server",
-    "build_dev": "webpack --config ./config/webpack.config.js --mode development",
+    "build_client_dev": "webpack --config ./config/webpack.config.js --mode development",
     "build_client": "webpack --config ./config/webpack.config.js --mode production",
+    "build_server_dev": "webpack --config ./config/webpack_server.config.js --mode development",
     "build_server": "webpack --config ./config/webpack_server.config.js --mode production"
   },
   "author": "",
@@ -17,16 +18,19 @@
   "homepage": "./",
   "devDependencies": {
     "@babel/core": "^7.12.3",
+    "@babel/polyfill": "^7.12.1",
     "@babel/preset-env": "^7.12.1",
     "@babel/preset-react": "^7.12.1",
     "babel-loader": "^8.1.0",
     "concurrently": "^5.3.0",
     "express": "^4.17.1",
     "html-webpack-plugin": "^4.5.0",
+    "pg": "^8.5.1",
     "react": "^17.0.1",
     "react-dom": "^17.0.1",
     "webpack": "^4.0.0",
     "webpack-cli": "^3.0.0",
-    "webpack-dev-server": "^3.11.0"
+    "webpack-dev-server": "^3.11.0",
+    "webpack-node-externals": "^2.5.2"
   }
 }
