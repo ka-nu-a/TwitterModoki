@@ -1,5 +1,6 @@
 const express = require('express');
 const path = require('path');
+const bodyParser = require('body-Parser');
 //const port = process.env.PORT || 8080;
 const port = process.env.PORT || 3000;
 const app = express();
@@ -9,66 +10,58 @@ const getPostgresClient = require('./postgres').getPostgresClient;
 app.use(express.static('./'));
 app.use(express.static(path.join('./', 'dist')));
 app.use(express.static(path.join('./', 'dist','client')));
+app.use(bodyParser.urlencoded({ extended: true }));
 
-app.get('/api/write/:name', function(req, res){
-	//console.log('DB: write: ' + req.params.name);
+app.post('/api/write/', function(req, res){
 	(async() => {
 		try {
 			const db = await getPostgresClient();
-			const SQL = "INSERT INTO hoge(foo) VALUES ($1)";
-			const result = await db.execute(SQL, [req.params.name]);
-			//console.log(result);
-			res.status(200).send("Write: Succeed!");
+			const SQL = "INSERT INTO tweets(user_id, tweet, tweet_time) VALUES ($1, $2, $3)";
+			const result = await db.execute(SQL, [1, req.body.tweet, "now()"]);
+			res.status(200).send("Write: Succeed: " + req.body.tweet);
 		} catch (e) {
 			console.log('#ERROR#: unknown');
-			res.status(500).send("DB Error.");
+			res.status(500).send("DB Error: Write");
 			throw e;
 		}
 	})();
 });
 
-app.get('/api/delete/', function(req, res){
+app.post('/api/read/', function(req, res){
 	(async() => {
 		try {
 			const db = await getPostgresClient();
-			const SQL = "DELETE from hoge";
+			const SQL = 'SELECT * FROM tweets';
 			const result = await db.execute(SQL);
-			res.status(200).send("Delete: Succeed!");
-		} catch (e) {
-			console.log('#ERROR#: unknown');
-			res.status(500).send("DB Error.");
-			throw e;
-		}
-	})();
-});
-
-app.get('/api/read/', function(req, res){
-	console.log('DB: Read');
-	(async() => {
-		try {
-			const db = await getPostgresClient();
-			const SQL = 'SELECT * FROM hoge';
-			const result = await db.execute(SQL);
-			//console.log(result);
 			res.status(200).send(result);
 		} catch (e) {
 			console.log('#ERROR#: unknown');
-			res.status(500).send("DB Error.");
+			res.status(500).send("DB Error: Read");
 			throw e;
 		}
 	})();
 });
 
-app.get('/api/delete/:name', function(req, res){
+app.post('/api/test/', function(req, res){
+	console.log(req.body.name);
+	res.status(200).send(req.body.name);
+});
+
+app.post('/api/delete/', function(req, res){
 	(async() => {
 		try {
 			const db = await getPostgresClient();
-			const SQL = "DELETE from hoge WHERE foo = $1";
-			const result = await db.execute(SQL, [req.params.name]);
-			res.status(200).send("Succeed!");
+			if(req.body.tweet_id == ""){
+				const SQL = "DELETE from tweets";
+				const result = await db.execute(SQL);
+			} else {
+				const SQL = "DELETE from tweets WHERE tweet_id = $1";
+				const result = await db.execute(SQL, [req.body.tweet_id]);
+			}
+			res.status(200).send("Delete: Succeed!");
 		} catch (e) {
 			console.log('#ERROR#: unknown');
-			res.status(500).send("DB Error.");
+			res.status(500).send("DB Error: Delete");
 			throw e;
 		}
 	})();
