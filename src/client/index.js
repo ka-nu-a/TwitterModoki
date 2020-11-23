@@ -75,7 +75,7 @@ class BtnGetTweet extends React.Component {
 	}
 }
 
-class BoxSetNGetTWeet extends React.Component {
+class BoxSetNGetTweet extends React.Component {
 	//this.props.update
 	render(){
 		return(
