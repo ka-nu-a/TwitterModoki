@@ -91,6 +91,7 @@ class Index extends React.Component {
 		super(props);
 		this.state = {data: [{}], tweets: []};
 		this.getTweet();
+		setInterval(() => {this.getTweet()}, 5000);
 	}
 	
 	deleteTweet(tweet_id){
