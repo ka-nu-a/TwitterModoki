@@ -70,7 +70,19 @@ class Tweet extends React.Component {
 class BtnGetTweet extends React.Component {
 	render(){
 		return(
-			<button onClick={e => {this.props.getTweet();}}>更新</button>
+			<button onClick={e => {this.props.getTweet();}}>手動更新(5秒ごとに自動更新されてるよ)</button>
+		);
+	}
+}
+
+class BoxSetNGetTWeet extends React.Component {
+	//this.props.update
+	render(){
+		return(
+			<div>
+				更新時の叫びの数
+				<input type='tel' id='NGetTweetBox' value='30' maxlength='4' onblur={e => this.props.update(e.target.value)}/>
+			</div>
 		);
 	}
 }
@@ -79,7 +91,8 @@ class TweetList extends React.Component {
 	render() {
 		return(
 			<div>
-				<BtnGetTweet getTweet={v => this.props.getTweet(v)}/>
+				<BtnGetTweet getTweet={() => this.props.getTweet()}/>
+				<BoxSetNGetTweet update={(v) => this.props.updateNGetTweet(v)}/>
 				{this.props.tweets}
 			</div>
 		);
@@ -89,9 +102,9 @@ class TweetList extends React.Component {
 class Index extends React.Component {
 	constructor(props) {
 		super(props);
-		this.state = {data: [{}], tweets: []};
+		this.state = {data: [{}], tweets: [], nGetTweet: 30};
 		this.getTweet();
-		setInterval(() => {this.getTweet()}, 5000); //ローカルだと動くけど、heroku上だと動かない
+		setInterval(() => {this.getTweet()}, 5000);
 	}
 	
 	deleteTweet(tweet_id){
@@ -132,8 +145,9 @@ class Index extends React.Component {
 			.catch((error) => console.error(error))
 	}
 	
-	getTweet(latest = 30){
-		console.log('getTweet');
+	getTweet(){
+		//console.log('getTweet');
+		const latest = this.state.nGetTweet;
 		fetch('/api/read/', {
 			method: 'POST',
 			headers: {
@@ -150,12 +164,17 @@ class Index extends React.Component {
 			})
 			.catch((error) => console.error(error))
 	}
+
+	updateNGetTweet(num){
+		console.log('updateNGetTweet: '+num);
+		this.setState({nGetTweet: num});
+	}
 	
 	render() {
 		return (
 			<div>
 				<TweetBox sendTweet={v => this.sendTweet(v)}/>
-				<TweetList tweets={this.state.tweets} getTweet={v => this.getTweet(v)}/>
+				<TweetList tweets={this.state.tweets} getTweet={() => this.getTweet()} updateNGetTweet={(v) => this.updateNGetTweet(v)}/>
 			</div>
 		);
 	}
