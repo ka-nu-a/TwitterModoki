@@ -81,12 +81,16 @@ class BoxSetNGetTweet extends React.Component {
 		this.state = {nGetTweet: 30};
 		this.props.update(this.state.nGetTweet);
 	}
+	
+	onChange(e){
+		this.setState({nGetTweet: e.target.value});
+	}
 
 	render(){
 		return(
 			<div>
 				表示する叫びの数
-				<input type='tel' id='NGetTweetBox' value={this.state.nGetTweet} maxlength='4' onblur={e => this.props.update(e.target.value)}/>
+				<input type='tel' id='NGetTweetBox' value={this.state.nGetTweet} maxlength='4' onblur={e => this.props.update(this.state.nGetTweet)}/>
 			</div>
 		);
 	}
