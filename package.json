@@ -10,6 +10,7 @@
     "dev_client": "webpack-dev-server --config ./config/webpack.config.js --open --mode development",
     "dev_server": "nodemon --exec babel-node src/server/server.js",
     "build": "npm run build_client && npm run build_server",
+		"build_dev": "npm run build_client_dev && npm run build_server_dev",
     "build_client_dev": "webpack --config ./config/webpack.config.js --mode development",
     "build_client": "webpack --config ./config/webpack.config.js --mode production",
     "build_server_dev": "webpack --config ./config/webpack_server.config.js --mode development",

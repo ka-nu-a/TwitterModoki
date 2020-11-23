@@ -28,7 +28,8 @@ const configCommon = {
 module.exports = (env,argv) => {
  	const IS_DEVELOPMENT = (argv.mode === "development");
 	var configOptional = {};
-	if(IS_DEVELOPMENT == true){
+	//if(IS_DEVELOPMENT == true){
+	if(false){
 		configOptional = {
 			devServer: {
 				historyApiFallback: true,
@@ -38,7 +39,7 @@ module.exports = (env,argv) => {
 				port: 8080,
 				proxy: {
 					'/api/**': {
-						target: 'http://localhost:3000',
+						target: 'http://0.0.0.0:3000',
 						secure: false,
 						logLevel: 'debug'
 					}
@@ -49,5 +50,6 @@ module.exports = (env,argv) => {
 		// nothing yet.
 	}
 	
-	return {...configCommon, ...configOptional};
+	//return {...configCommon, ...configOptional};
+	return configCommon;
 }; 

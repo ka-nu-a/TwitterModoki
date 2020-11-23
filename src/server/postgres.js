@@ -1,4 +1,4 @@
-const Pool = require('pg').Pool;
+const { Pool } = require('pg');
 const connectionString = 'postgresql://admin:admin@localhost:5432/twitter_modoki';
 /*const connectionString = {
 	database: "dqx_craftsman",
