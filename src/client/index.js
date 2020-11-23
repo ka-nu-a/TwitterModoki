@@ -133,6 +133,7 @@ class Index extends React.Component {
 	}
 	
 	getTweet(latest = 30){
+		console.log('getTweet');
 		fetch('/api/read/', {
 			method: 'POST',
 			headers: {
