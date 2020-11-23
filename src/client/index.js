@@ -83,8 +83,9 @@ class BoxSetNGetTweet extends React.Component {
 	}
 	
 	onChange(e){
-		this.setState({nGetTweet: e.target.value});
-		this.props.update(e.target.value);
+		const num = e.target.value.replace(/[^0-9]+/i,'');
+		this.setState({nGetTweet: num});
+		this.props.update(num);
 	}
 
 	render(){
