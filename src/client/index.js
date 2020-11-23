@@ -33,14 +33,34 @@ class TweetBox extends React.Component {
 }
 
 class Tweet extends React.Component {
+	constructor(props) {
+		super(props);
+		this.state = {user_name: ""};
+		this.getUsernameByUserid(this.props.user_id);
+	}
+	
+	getUsernameByUserid(user_id){
+		fetch('/api/getUsernameByUserid/', {
+			method: 'POST',
+			headers: {
+				'Accept': 'application/json',
+				'Content-Type': 'application/json'
+			},
+			body: JSON.stringify({'user_id': user_id})
+		})
+			.then((response) => response.json())
+			.then((jsonData) => {
+				this.setState({user_name: jsonData[0].name});
+			})
+			.catch((error) => console.error(error))
+	}
+	
 	render() {
 		return(
 			<div className='tweet'>
-				<span className='tweet_user_id'>{this.props.user_id}</span>
-				：
+				<span className='tweet_user_name'>{this.state.user_name}</span>
 				<span className='tweet_text'>{this.props.text}</span>
-				：
-				<span className='tweet_time'>{this.props.time.getFullYear()}/{this.props.time.getMonth()}/{this.props.time.getDate()} {this.props.time.getHours()}:{this.props.time.getMinutes()}　</span>
+				<span className='tweet_time'>{this.props.time.getFullYear()}/{this.props.time.getMonth()}/{this.props.time.getDate()} {('00'+this.props.time.getHours()).slice(-2)}:{('00'+this.props.time.getMinutes()).slice(-2)}　</span>
 				<button onClick={v => this.props.deleteTweet(this.props.tweet_id)}>×</button>
 			</div>
 		);
@@ -111,13 +131,14 @@ class Index extends React.Component {
 			.catch((error) => console.error(error))
 	}
 	
-	getTweet(latest = 10){
+	getTweet(latest = 30){
 		fetch('/api/read/', {
 			method: 'POST',
 			headers: {
 				'Accept': 'application/json',
 				'Content-Type': 'application/json'
-			}
+			},
+			body: JSON.stringify({'latest': latest})
 		})
 			.then((response) => response.json())
 			.then((jsonData) => {

@@ -1,0 +1,17 @@
+.tweet_user_name::before {
+	content: "[";
+}
+.tweet_user_name::after {
+	content: "]： ";
+}
+.tweet_text::after {
+	content: "！！！";
+}
+
+.tweet_time {
+	font-size: 8pt;
+	color: #A0A0A0;
+}
+.tweet_time::before{
+	content: " :";
+}

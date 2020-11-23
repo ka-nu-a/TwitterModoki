@@ -14,7 +14,7 @@ app.use(express.static(path.join('./', 'dist','client')));
 app.use(bodyParser.json());
 
 app.post('/api/write/', function(req, res){
-	console.log('write: ' + req.body.tweet);
+	//console.log('write: ' + req.body.tweet);
 	(async() => {
 		const db = await getPostgresClient();
 		try {
@@ -32,12 +32,12 @@ app.post('/api/write/', function(req, res){
 });
 
 app.post('/api/read/', function(req, res){
-	console.log('read');
+	//console.log('read: ' + req.body.latest);
 	(async() => {
 		const db = await getPostgresClient();
 		try {
-			const SQL = 'SELECT * FROM tweets';
-			const result = await db.execute(SQL);
+			const SQL = 'SELECT * FROM tweets WHERE flg_delete != TRUE ORDER BY tweet_time desc limit $1';
+			const result = await db.execute(SQL, [req.body.latest]);
 			res.status(200).send(result);
 		} catch (e) {
 			console.log('#ERROR#: Read');
@@ -55,7 +55,26 @@ app.post('/api/test/', function(req, res){
 });
 
 app.post('/api/delete/', function(req, res){
-	console.log('delete: '+req.body.tweet_id);
+	//console.log('delete: '+req.body.tweet_id);
+	(async() => {
+		const db = await getPostgresClient();
+		try {
+			const SQL = 'UPDATE tweets SET flg_delete = TRUE WHERE tweet_id = $1';
+			const result = await db.execute(SQL, [req.body.tweet_id]);
+			res.status(200).send(JSON.stringify({'message': 'Delete: Succeed!'}));
+		} catch (e) {
+			console.log('#ERROR#: Delete');
+			res.status(500).send(JSON.stringify({'message': 'DB Error: Set Delete Flag'}));
+			throw e;
+		} finally {
+			await db.release();
+		}
+	})();
+});
+
+/* //delete flagではなく直接削除していた旧バージョン
+app.post('/api/delete/', function(req, res){
+	//console.log('delete: '+req.body.tweet_id);
 	(async() => {
 		const db = await getPostgresClient();
 		try {
@@ -76,9 +95,29 @@ app.post('/api/delete/', function(req, res){
 		}
 	})();
 });
+*/
+
+app.post('/api/getUsernameByUserid/', function(req, res){
+	//console.log('getUsernameByUserid ' + req.body.user_id);
+	(async() => {
+		const db = await getPostgresClient();
+		try {
+			const SQL = 'SELECT * FROM users WHERE id = $1';
+			const result = await db.execute(SQL, [req.body.user_id]);
+			res.status(200).send(result);
+		} catch (e) {
+			console.log('#ERROR#: getUsernameByUserid');
+			res.status(500).send(JSON.stringify({'message': 'DB Error: getUsernameByUserid'}));
+			throw e;
+		} finally {
+			await db.release();
+		}
+	})();
+});
+
 
 app.get('/*', function(req, res){
-	console.log('**');
+	//console.log('**');
 	res.sendFile(path.resolve(PATH_CLIENT, 'index.html'));
 });
 
