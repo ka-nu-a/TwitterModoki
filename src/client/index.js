@@ -76,12 +76,17 @@ class BtnGetTweet extends React.Component {
 }
 
 class BoxSetNGetTweet extends React.Component {
-	//this.props.update
+	constructor(props) {
+		super(props);
+		this.state = {nGetTweet: 30};
+		this.props.update(this.state.nGetTweet);
+	}
+
 	render(){
 		return(
 			<div>
-				更新時の叫びの数
-				<input type='tel' id='NGetTweetBox' value='30' maxlength='4' onblur={e => this.props.update(e.target.value)}/>
+				表示する叫びの数
+				<input type='tel' id='NGetTweetBox' value={this.state.nGetTweet} maxlength='4' onblur={e => this.props.update(e.target.value)}/>
 			</div>
 		);
 	}
@@ -102,7 +107,7 @@ class TweetList extends React.Component {
 class Index extends React.Component {
 	constructor(props) {
 		super(props);
-		this.state = {data: [{}], tweets: [], nGetTweet: 30};
+		this.state = {data: [{}], tweets: [], nGetTweet: 0};
 		this.getTweet();
 		setInterval(() => {this.getTweet()}, 5000);
 	}
