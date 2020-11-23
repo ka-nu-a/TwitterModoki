@@ -1,0 +1,131 @@
+2020-11-23T06:10:32.000000+00:00 app[api]: Build started by user koda.yukie.1223@gmail.com
+2020-11-23T06:11:21.000000+00:00 app[api]: Build failed -- check your build output: https://dashboard.heroku.com/apps/edb6e3f5-9712-424e-b1d4-6287c3a8b8c2/activity/builds/2dfd6a7a-3e30-4a1d-8109-e83b226872a1
+2020-11-23T06:24:03.743713+00:00 app[api]: Running release v15 commands by user koda.yukie.1223@gmail.com
+2020-11-23T06:24:03.743713+00:00 app[api]: Attach DATABASE (@ref:postgresql-symmetrical-66437) by user koda.yukie.1223@gmail.com
+2020-11-23T06:24:03.756438+00:00 app[api]: @ref:postgresql-symmetrical-66437 completed provisioning, setting DATABASE_URL. by user koda.yukie.1223@gmail.com
+2020-11-23T06:24:03.756438+00:00 app[api]: Release v16 created by user koda.yukie.1223@gmail.com
+2020-11-23T06:24:04.113173+00:00 heroku[web.1]: State changed from down to starting
+2020-11-23T06:24:06.385397+00:00 heroku[web.1]: Starting process with command `npm start`
+2020-11-23T06:24:08.516684+00:00 app[web.1]: 
+2020-11-23T06:24:08.516705+00:00 app[web.1]: > test@1.0.0 start /app
+2020-11-23T06:24:08.516705+00:00 app[web.1]: > npm run server
+2020-11-23T06:24:08.516706+00:00 app[web.1]: 
+2020-11-23T06:24:08.899534+00:00 app[web.1]: 
+2020-11-23T06:24:08.899567+00:00 app[web.1]: > test@1.0.0 server /app
+2020-11-23T06:24:08.899568+00:00 app[web.1]: > node dist/server/server.js
+2020-11-23T06:24:08.899568+00:00 app[web.1]: 
+2020-11-23T06:24:09.375342+00:00 heroku[web.1]: State changed from starting to up
+2020-11-23T06:56:22.115891+00:00 heroku[web.1]: Idling
+2020-11-23T06:56:22.117939+00:00 heroku[web.1]: State changed from up to down
+2020-11-23T06:56:23.385541+00:00 heroku[web.1]: Stopping all processes with SIGTERM
+2020-11-23T06:56:23.547229+00:00 heroku[web.1]: Process exited with status 143
+2020-11-23T07:16:28.000000+00:00 app[api]: Build started by user koda.yukie.1223@gmail.com
+2020-11-23T07:17:43.058760+00:00 app[api]: Release v17 created by user koda.yukie.1223@gmail.com
+2020-11-23T07:17:43.058760+00:00 app[api]: Deploy 67c575a9 by user koda.yukie.1223@gmail.com
+2020-11-23T07:17:43.260012+00:00 heroku[web.1]: State changed from down to starting
+2020-11-23T07:17:45.310650+00:00 heroku[web.1]: Starting process with command `npm start`
+2020-11-23T07:17:46.000000+00:00 app[api]: Build succeeded
+2020-11-23T07:17:47.666332+00:00 app[web.1]: 
+2020-11-23T07:17:47.666348+00:00 app[web.1]: > test@1.0.0 start /app
+2020-11-23T07:17:47.666349+00:00 app[web.1]: > npm run server
+2020-11-23T07:17:47.666349+00:00 app[web.1]: 
+2020-11-23T07:17:48.078391+00:00 app[web.1]: 
+2020-11-23T07:17:48.078406+00:00 app[web.1]: > test@1.0.0 server /app
+2020-11-23T07:17:48.078406+00:00 app[web.1]: > node dist/server/server.js
+2020-11-23T07:17:48.078406+00:00 app[web.1]: 
+2020-11-23T07:17:48.161860+00:00 app[web.1]: internal/modules/cjs/loader.js:834
+2020-11-23T07:17:48.161862+00:00 app[web.1]: throw err;
+2020-11-23T07:17:48.161863+00:00 app[web.1]: ^
+2020-11-23T07:17:48.161863+00:00 app[web.1]: 
+2020-11-23T07:17:48.161864+00:00 app[web.1]: Error: Cannot find module '@babel/polyfill'
+2020-11-23T07:17:48.161864+00:00 app[web.1]: Require stack:
+2020-11-23T07:17:48.161866+00:00 app[web.1]: - /app/dist/server/server.js
+2020-11-23T07:17:48.161867+00:00 app[web.1]: at Function.Module._resolveFilename (internal/modules/cjs/loader.js:831:15)
+2020-11-23T07:17:48.161868+00:00 app[web.1]: at Function.Module._load (internal/modules/cjs/loader.js:687:27)
+2020-11-23T07:17:48.161871+00:00 app[web.1]: at Module.require (internal/modules/cjs/loader.js:903:19)
+2020-11-23T07:17:48.161872+00:00 app[web.1]: at require (internal/modules/cjs/helpers.js:74:18)
+2020-11-23T07:17:48.161872+00:00 app[web.1]: at Object.<anonymous> (/app/dist/server/server.js:1:974)
+2020-11-23T07:17:48.161873+00:00 app[web.1]: at n (/app/dist/server/server.js:1:110)
+2020-11-23T07:17:48.161873+00:00 app[web.1]: at Object.<anonymous> (/app/dist/server/server.js:1:929)
+2020-11-23T07:17:48.161874+00:00 app[web.1]: at n (/app/dist/server/server.js:1:110)
+2020-11-23T07:17:48.161874+00:00 app[web.1]: at /app/dist/server/server.js:1:902
+2020-11-23T07:17:48.161874+00:00 app[web.1]: at Object.<anonymous> (/app/dist/server/server.js:1:911) {
+2020-11-23T07:17:48.161875+00:00 app[web.1]: code: 'MODULE_NOT_FOUND',
+2020-11-23T07:17:48.161876+00:00 app[web.1]: requireStack: [ '/app/dist/server/server.js' ]
+2020-11-23T07:17:48.161876+00:00 app[web.1]: }
+2020-11-23T07:17:48.183400+00:00 app[web.1]: npm ERR! code ELIFECYCLE
+2020-11-23T07:17:48.183869+00:00 app[web.1]: npm ERR! errno 1
+2020-11-23T07:17:48.205273+00:00 app[web.1]: npm ERR! test@1.0.0 server: `node dist/server/server.js`
+2020-11-23T07:17:48.205602+00:00 app[web.1]: npm ERR! Exit status 1
+2020-11-23T07:17:48.206026+00:00 app[web.1]: npm ERR!
+2020-11-23T07:17:48.206285+00:00 app[web.1]: npm ERR! Failed at the test@1.0.0 server script.
+2020-11-23T07:17:48.206495+00:00 app[web.1]: npm ERR! This is probably not a problem with npm. There is likely additional logging output above.
+2020-11-23T07:17:48.217455+00:00 app[web.1]: 
+2020-11-23T07:17:48.217782+00:00 app[web.1]: npm ERR! A complete log of this run can be found in:
+2020-11-23T07:17:48.217982+00:00 app[web.1]: npm ERR!     /app/.npm/_logs/2020-11-23T07_17_48_207Z-debug.log
+2020-11-23T07:17:48.241986+00:00 app[web.1]: npm ERR! code ELIFECYCLE
+2020-11-23T07:17:48.242422+00:00 app[web.1]: npm ERR! errno 1
+2020-11-23T07:17:48.248931+00:00 app[web.1]: npm ERR! test@1.0.0 start: `npm run server`
+2020-11-23T07:17:48.249093+00:00 app[web.1]: npm ERR! Exit status 1
+2020-11-23T07:17:48.249273+00:00 app[web.1]: npm ERR!
+2020-11-23T07:17:48.249398+00:00 app[web.1]: npm ERR! Failed at the test@1.0.0 start script.
+2020-11-23T07:17:48.249531+00:00 app[web.1]: npm ERR! This is probably not a problem with npm. There is likely additional logging output above.
+2020-11-23T07:17:48.256061+00:00 app[web.1]: 
+2020-11-23T07:17:48.256288+00:00 app[web.1]: npm ERR! A complete log of this run can be found in:
+2020-11-23T07:17:48.256406+00:00 app[web.1]: npm ERR!     /app/.npm/_logs/2020-11-23T07_17_48_250Z-debug.log
+2020-11-23T07:17:48.366814+00:00 heroku[web.1]: Process exited with status 1
+2020-11-23T07:17:48.410415+00:00 heroku[web.1]: State changed from starting to crashed
+2020-11-23T07:17:48.418356+00:00 heroku[web.1]: State changed from crashed to starting
+2020-11-23T07:17:50.219566+00:00 heroku[web.1]: Starting process with command `npm start`
+2020-11-23T07:17:52.627937+00:00 app[web.1]: 
+2020-11-23T07:17:52.627953+00:00 app[web.1]: > test@1.0.0 start /app
+2020-11-23T07:17:52.627954+00:00 app[web.1]: > npm run server
+2020-11-23T07:17:52.627954+00:00 app[web.1]: 
+2020-11-23T07:17:52.994864+00:00 app[web.1]: 
+2020-11-23T07:17:52.994906+00:00 app[web.1]: > test@1.0.0 server /app
+2020-11-23T07:17:52.994907+00:00 app[web.1]: > node dist/server/server.js
+2020-11-23T07:17:52.994907+00:00 app[web.1]: 
+2020-11-23T07:17:53.055703+00:00 app[web.1]: internal/modules/cjs/loader.js:834
+2020-11-23T07:17:53.055705+00:00 app[web.1]: throw err;
+2020-11-23T07:17:53.055706+00:00 app[web.1]: ^
+2020-11-23T07:17:53.055706+00:00 app[web.1]: 
+2020-11-23T07:17:53.055706+00:00 app[web.1]: Error: Cannot find module '@babel/polyfill'
+2020-11-23T07:17:53.055707+00:00 app[web.1]: Require stack:
+2020-11-23T07:17:53.055707+00:00 app[web.1]: - /app/dist/server/server.js
+2020-11-23T07:17:53.055710+00:00 app[web.1]: at Function.Module._resolveFilename (internal/modules/cjs/loader.js:831:15)
+2020-11-23T07:17:53.055710+00:00 app[web.1]: at Function.Module._load (internal/modules/cjs/loader.js:687:27)
+2020-11-23T07:17:53.055711+00:00 app[web.1]: at Module.require (internal/modules/cjs/loader.js:903:19)
+2020-11-23T07:17:53.055711+00:00 app[web.1]: at require (internal/modules/cjs/helpers.js:74:18)
+2020-11-23T07:17:53.055712+00:00 app[web.1]: at Object.<anonymous> (/app/dist/server/server.js:1:974)
+2020-11-23T07:17:53.055712+00:00 app[web.1]: at n (/app/dist/server/server.js:1:110)
+2020-11-23T07:17:53.055713+00:00 app[web.1]: at Object.<anonymous> (/app/dist/server/server.js:1:929)
+2020-11-23T07:17:53.055715+00:00 app[web.1]: at n (/app/dist/server/server.js:1:110)
+2020-11-23T07:17:53.055716+00:00 app[web.1]: at /app/dist/server/server.js:1:902
+2020-11-23T07:17:53.055716+00:00 app[web.1]: at Object.<anonymous> (/app/dist/server/server.js:1:911) {
+2020-11-23T07:17:53.055716+00:00 app[web.1]: code: 'MODULE_NOT_FOUND',
+2020-11-23T07:17:53.055717+00:00 app[web.1]: requireStack: [ '/app/dist/server/server.js' ]
+2020-11-23T07:17:53.055717+00:00 app[web.1]: }
+2020-11-23T07:17:53.067875+00:00 app[web.1]: npm ERR! code ELIFECYCLE
+2020-11-23T07:17:53.068269+00:00 app[web.1]: npm ERR! errno 1
+2020-11-23T07:17:53.078687+00:00 app[web.1]: npm ERR! test@1.0.0 server: `node dist/server/server.js`
+2020-11-23T07:17:53.078876+00:00 app[web.1]: npm ERR! Exit status 1
+2020-11-23T07:17:53.079011+00:00 app[web.1]: npm ERR!
+2020-11-23T07:17:53.079152+00:00 app[web.1]: npm ERR! Failed at the test@1.0.0 server script.
+2020-11-23T07:17:53.079299+00:00 app[web.1]: npm ERR! This is probably not a problem with npm. There is likely additional logging output above.
+2020-11-23T07:17:53.104576+00:00 app[web.1]: 
+2020-11-23T07:17:53.105012+00:00 app[web.1]: npm ERR! A complete log of this run can be found in:
+2020-11-23T07:17:53.105240+00:00 app[web.1]: npm ERR!     /app/.npm/_logs/2020-11-23T07_17_53_080Z-debug.log
+2020-11-23T07:17:53.134436+00:00 app[web.1]: npm ERR! code ELIFECYCLE
+2020-11-23T07:17:53.134990+00:00 app[web.1]: npm ERR! errno 1
+2020-11-23T07:17:53.145566+00:00 app[web.1]: npm ERR! test@1.0.0 start: `npm run server`
+2020-11-23T07:17:53.145760+00:00 app[web.1]: npm ERR! Exit status 1
+2020-11-23T07:17:53.145963+00:00 app[web.1]: npm ERR!
+2020-11-23T07:17:53.146135+00:00 app[web.1]: npm ERR! Failed at the test@1.0.0 start script.
+2020-11-23T07:17:53.146297+00:00 app[web.1]: npm ERR! This is probably not a problem with npm. There is likely additional logging output above.
+2020-11-23T07:17:53.154232+00:00 app[web.1]: 
+2020-11-23T07:17:53.154514+00:00 app[web.1]: npm ERR! A complete log of this run can be found in:
+2020-11-23T07:17:53.154666+00:00 app[web.1]: npm ERR!     /app/.npm/_logs/2020-11-23T07_17_53_147Z-debug.log
+2020-11-23T07:17:53.214461+00:00 heroku[web.1]: Process exited with status 1
+2020-11-23T07:17:53.277858+00:00 heroku[web.1]: State changed from starting to crashed
+2020-11-23T07:18:29.035729+00:00 heroku[router]: at=error code=H10 desc="App crashed" method=GET path="/" host=sakebutter.herokuapp.com request_id=138450a1-642d-4010-a6d1-d17dcef2253d fwd="153.191.185.215" dyno= connect= service= status=503 bytes= protocol=https
+2020-11-23T07:18:29.885178+00:00 heroku[router]: at=error code=H10 desc="App crashed" method=GET path="/favicon.ico" host=sakebutter.herokuapp.com request_id=3178bcf9-659c-415e-96e9-42053d6939f1 fwd="153.191.185.215" dyno= connect= service= status=503 bytes= protocol=https
