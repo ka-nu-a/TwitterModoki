@@ -1,6 +1,6 @@
 const express = require('express');
 const path = require('path');
-const bodyParser = require('body-Parser');
+const bodyParser = require('body-parser');
 const port = process.env.PORT || 8080;
 //const port = process.env.PORT || 3000;
 const app = express();
@@ -10,7 +10,7 @@ const { getPostgresClient } = require('./postgres');
 app.use(express.static('./'));
 app.use(express.static(path.join('./', 'dist')));
 app.use(express.static(path.join('./', 'dist','client')));
-app.use(bodyParser.urlencoded({ extended: true })); //client側のjsでは、urlencodedよりjsonのほうが扱いやすそうなので修正(curlが少し大変)
+//app.use(bodyParser.urlencoded({ extended: true })); //client側のjsでは、urlencodedよりjsonのほうが扱いやすそうなので修正(curlが少し大変)
 app.use(bodyParser.json());
 
 app.post('/api/write/', function(req, res){
