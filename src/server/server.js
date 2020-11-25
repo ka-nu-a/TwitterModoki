@@ -36,7 +36,7 @@ app.post('/api/read/', function(req, res){
 	(async() => {
 		const db = await getPostgresClient();
 		try {
-			const SQL = 'SELECT * FROM tweets WHERE flg_delete != TRUE ORDER BY tweet_time desc limit $1';
+			const SQL = 'SELECT tweets.tweet_id, tweets.user_id, tweets.tweet, tweets.tweet_time, tweets.count_like, users.name FROM tweets INNER JOIN users ON tweets.user_id = users.id WHERE tweets.flg_delete != TRUE ORDER BY tweet_time desc limit $1';
 			const result = await db.execute(SQL, [req.body.latest]);
 			res.status(200).send(result);
 		} catch (e) {

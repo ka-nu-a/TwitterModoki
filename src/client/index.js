@@ -33,32 +33,10 @@ class TweetBox extends React.Component {
 }
 
 class Tweet extends React.Component {
-	constructor(props) {
-		super(props);
-		this.state = {user_name: ""};
-		this.getUsernameByUserid(this.props.user_id);
-	}
-	
-	getUsernameByUserid(user_id){
-		fetch('/api/getUsernameByUserid/', {
-			method: 'POST',
-			headers: {
-				'Accept': 'application/json',
-				'Content-Type': 'application/json'
-			},
-			body: JSON.stringify({'user_id': user_id})
-		})
-			.then((response) => response.json())
-			.then((jsonData) => {
-				this.setState({user_name: jsonData[0].name});
-			})
-			.catch((error) => console.error(error))
-	}
-	
 	render() {
 		return(
 			<div className='tweet'>
-				<span className='tweet_user_name'>{this.state.user_name}</span>
+				<span className='tweet_user_name'>{this.props.user_name}</span>
 				<span className='tweet_text'>{this.props.text}</span>
 				<span className='tweet_time'>{this.props.time.getFullYear()}/{this.props.time.getMonth()+1}/{this.props.time.getDate()} {('00'+this.props.time.getHours()).slice(-2)}:{('00'+this.props.time.getMinutes()).slice(-2)}　</span>
 				<button onClick={v => this.props.deleteTweet(this.props.tweet_id)}>×</button>
@@ -170,7 +148,7 @@ class Index extends React.Component {
 			.then((response) => response.json())
 			.then((jsonData) => {
 				this.setState({tweets: jsonData.map((tweet) => 
-					<Tweet key={tweet.tweet_id} tweet_id={tweet.tweet_id} user_id={tweet.user_id} text={tweet.tweet} time={new Date(tweet.tweet_time)} deleteTweet={v => this.deleteTweet(v)} />
+					<Tweet key={tweet.tweet_id} tweet_id={tweet.tweet_id} user_id={tweet.user_id} text={tweet.tweet} time={new Date(tweet.tweet_time)} user_name={tweet.name} deleteTweet={v => this.deleteTweet(v)} />
 				)});
 			})
 			.catch((error) => console.error(error))
