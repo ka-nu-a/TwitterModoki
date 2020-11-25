@@ -92,7 +92,7 @@ class BoxSetNGetTweet extends React.Component {
 		return(
 			<div>
 				表示する叫びの数
-				<input type='tel' id='NGetTweetBox' value={this.state.nGetTweet} onChange={e => this.onChange(e)} maxlength='4'/>
+				<input type='tel' id='NGetTweetBox' value={this.state.nGetTweet} onChange={e => this.onChange(e)} maxLength='4'/>
 			</div>
 		);
 	}
@@ -113,11 +113,13 @@ class TweetList extends React.Component {
 class Index extends React.Component {
 	constructor(props) {
 		super(props);
-		this.state = {data: [{}], tweets: [], nGetTweet: 0};
-		this.getTweet();
-		setInterval(() => {this.getTweet()}, 5000);
+		this.state = {tweets: []};
+		var nGetTweet = 30;
 	}
-	
+	componentDidMount(){
+		this.getTweet();
+	}
+
 	deleteTweet(tweet_id){
 		fetch('/api/delete/', {
 			method: 'POST',
@@ -129,7 +131,6 @@ class Index extends React.Component {
 		})
 			.then((response) => response.json())
 			.then((jsonData) => {
-				//console.log(jsonData);
 				this.getTweet();
 			})
 			.catch((error) => console.error(error))
@@ -150,15 +151,14 @@ class Index extends React.Component {
 		})
 			.then((response) => response.json())
 			.then((jsonData) => {
-				//console.log(jsonData);
 				this.getTweet();
 			})
 			.catch((error) => console.error(error))
 	}
-	
+
 	getTweet(){
-		//console.log('getTweet');
-		const latest = this.state.nGetTweet;
+		setTimeout(() => {this.getTweet()}, 5000);
+		const latest = this.nGetTweet;
 		fetch('/api/read/', {
 			method: 'POST',
 			headers: {
@@ -177,8 +177,7 @@ class Index extends React.Component {
 	}
 
 	updateNGetTweet(num){
-		console.log('updateNGetTweet: '+num);
-		this.setState({nGetTweet: num});
+		this.nGetTweet = num;
 	}
 	
 	render() {
