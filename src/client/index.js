@@ -39,9 +39,9 @@ class Tweet extends React.Component {
 				<span className='tweet_user_name'>{this.props.user_name}</span>
 				<span className='tweet_text'>{this.props.text}</span>
 				<span className='tweet_time'>{this.props.time.getFullYear()}/{this.props.time.getMonth()+1}/{this.props.time.getDate()} {('00'+this.props.time.getHours()).slice(-2)}:{('00'+this.props.time.getMinutes()).slice(-2)}　</span>
-				<button onClick={v => this.props.deleteTweet(this.props.tweet_id)}>×</button>
 			</div>
 		);
+		//<button onClick={v => this.props.deleteTweet(this.props.tweet_id)}>×</button>
 	}
 }
 
