@@ -148,10 +148,24 @@ class Index extends React.Component {
 			.then((response) => response.json())
 			.then((jsonData) => {
 				this.setState({tweets: jsonData.map((tweet) => 
-					<Tweet key={tweet.tweet_id} tweet_id={tweet.tweet_id} user_id={tweet.user_id} text={tweet.tweet} time={new Date(tweet.tweet_time)} user_name={tweet.name} deleteTweet={v => this.deleteTweet(v)} />
+					<Tweet key={tweet.tweet_id} tweet_id={tweet.tweet_id} user_id={tweet.user_id} text={this.purseTweet(tweet.tweet)} time={new Date(tweet.tweet_time)} user_name={tweet.name} deleteTweet={v => this.deleteTweet(v)} />
 				)});
 			})
 			.catch((error) => console.error(error))
+	}
+	
+	purseTweet(text){
+		var pursedText = text.match(/(.*)(https?:\/\/[^ |^　]*)(.*)/i);
+		if(pursedText == null){
+			return (<>{text}</>);
+		} else {
+			console.log(pursedText);
+			return (
+				<>
+					{pursedText[1]}<a href={pursedText[2]} target="_blank" rel="noopener">{pursedText[2]}</a>{pursedText[3]}
+				</>
+			);
+		}
 	}
 
 	updateNGetTweet(num){
