@@ -56,7 +56,7 @@ app.post('/api/test/', function(req, res){
 
 app.post('/api/delete/', function(req, res){
 	//console.log('delete: '+req.body.tweet_id);
-	(async() => {
+	/*(async() => {
 		const db = await getPostgresClient();
 		try {
 			const SQL = 'UPDATE tweets SET flg_delete = TRUE WHERE tweet_id = $1';
@@ -69,7 +69,8 @@ app.post('/api/delete/', function(req, res){
 		} finally {
 			await db.release();
 		}
-	})();
+	})();*/
+	res.status(200).send("");
 });
 
 /* //delete flagではなく直接削除していた旧バージョン
