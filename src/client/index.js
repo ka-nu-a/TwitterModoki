@@ -16,6 +16,9 @@ class TweetBox extends React.Component {
 	}
 
 	doTweet(e){
+		if(this.state.length < 0){
+			return;
+		}
 		this.props.sendTweet(this.state.text);
 		document.getElementById('tweetBox').value='';
 		this.setState({text: '', length: 140});
