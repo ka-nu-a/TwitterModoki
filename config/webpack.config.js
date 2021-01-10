@@ -28,8 +28,8 @@ const configCommon = {
 module.exports = (env,argv) => {
  	const IS_DEVELOPMENT = (argv.mode === "development");
 	var configOptional = {};
-	//if(IS_DEVELOPMENT == true){
-	if(false){
+	if(IS_DEVELOPMENT == true){
+	//if(false){
 		configOptional = {
 			devServer: {
 				historyApiFallback: true,
@@ -50,6 +50,6 @@ module.exports = (env,argv) => {
 		// nothing yet.
 	}
 	
-	//return {...configCommon, ...configOptional};
-	return configCommon;
+	return {...configCommon, ...configOptional};
+	//return configCommon;
 }; 
