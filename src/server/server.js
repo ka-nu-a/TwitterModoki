@@ -37,7 +37,7 @@ app.post('/api/login/', function(req, res){
 					} catch (e) {
 						console.log('#ERROR: Login->write login-token.');
 					}
-					res.status(200).send(JSON.stringify({'message': 'login: ID/PW: testing now.', 'id': result[0].id, 'loginId': req.body.id, 'token': token, 'name': result[0].name}));
+					res.status(200).send(JSON.stringify({'message': 'login: ID/PW: Success', 'id': result[0].id, 'loginId': req.body.id, 'token': token, 'name': result[0].name}));
 				} else {
 					console.log('login: Failure...');
 					res.status(401).send(JSON.stringify({'message': 'login: ID or PW are failure.'}));
@@ -47,7 +47,7 @@ app.post('/api/login/', function(req, res){
 				const SQL = 'SELECT id, password, name, loginid FROM users WHERE token = $1';
 				const result = await db.execute(SQL, [req.body.token]);
 				if(result.length == 1){
-					res.status(200).send(JSON.stringify({'message': 'login: token: testing now.', 'id': result[0].id, 'loginId': result[0].loginid, 'token': req.body.token, 'name': result[0].name}));
+					res.status(200).send(JSON.stringify({'message': 'login: token: Success', 'id': result[0].id, 'loginId': result[0].loginid, 'token': req.body.token, 'name': result[0].name}));
 				} else {
 					console.log('login: Failure...');
 					res.status(401).send(JSON.stringify({'message': 'login: token is failure.'}));
@@ -70,11 +70,45 @@ app.post('/api/user/', function(req, res){
 		try {
 			const SQL = 'INSERT INTO users(name, password, loginid) VALUES ($1, $2, $3)';
 			const result = await db.execute(SQL, [req.body.id, req.body.pw, req.body.id]); // 仮で、ユーザー名 = ログインIDにする
-			res.status(200).send(JSON.stringify({'message': 'Create User: testing now.', 'loginId': req.id}));
+			res.status(200).send(JSON.stringify({'message': 'Create User: Success', 'loginId': req.id}));
 		} catch (e) {
 			console.log('#ERROR#: Write');
-			res.status(500).send(JSON.stringify({'message': 'DB Error: Write'}));
+			res.status(500).send(JSON.stringify({'message': 'DB Error: Create User'}));
 			throw e;
+		} finally {
+			await db.release();
+		}
+	})();
+});
+
+// 作成中...
+app.put('/api/user/:id', function(req, res){
+	(async() => {
+		const db = await getPostgresClient();
+		try {
+			const SQL = '';
+			const result = await db.execute(SQL, []);
+			res.status(200).send(JSON.stringify({'message': 'Put User: testing now.'}));
+		catch (e) {
+			console.log('#ERROR#: Put User');
+			res.status(500).send(JSON.stringify({'message': 'DB Error: Put User'}));
+		} finally {
+			await db.release();
+		}
+	})();
+});
+
+// 作成中...
+app.delete('/api/user/:id', function(req, res){
+	(async() => {
+		const db = await getPostgresClient();
+		try {
+			const SQL = '';
+			const result = await db.execute(SQL, []);
+			res.status(200).send(JSON.stringify({'message': 'Delete User: testing now.'}));
+		catch (e) {
+			console.log('#ERROR#: Delete User');
+			res.status(500).send(JSON.stringify({'message': 'DB Error: Delete User'}));
 		} finally {
 			await db.release();
 		}
