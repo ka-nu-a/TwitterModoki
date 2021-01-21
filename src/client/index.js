@@ -168,7 +168,7 @@ class Account extends React.Component {
 		const loginId = userData.loginId;
 		const userName = userData.name;
 		this.setState({isLogin: true, userId: userId, userName: userName, loginId: loginId});
-		Cookies.set('login-token', userData.token, {expires: 1});
+		Cookies.set('login-token', userData.token, {expires: 3650});
 		this.props.setUserId(userId);
 		this.hideLoginForm();
 	}
