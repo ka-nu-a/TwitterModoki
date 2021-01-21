@@ -87,9 +87,9 @@ app.put('/api/user/:id', function(req, res){
 		const db = await getPostgresClient();
 		try {
 			const SQL = '';
-			const result = await db.execute(SQL, []);
+			//const result = await db.execute(SQL, []);
 			res.status(200).send(JSON.stringify({'message': 'Put User: testing now.'}));
-		catch (e) {
+		} catch (e) {
 			console.log('#ERROR#: Put User');
 			res.status(500).send(JSON.stringify({'message': 'DB Error: Put User'}));
 		} finally {
@@ -104,9 +104,9 @@ app.delete('/api/user/:id', function(req, res){
 		const db = await getPostgresClient();
 		try {
 			const SQL = '';
-			const result = await db.execute(SQL, []);
+			//const result = await db.execute(SQL, []);
 			res.status(200).send(JSON.stringify({'message': 'Delete User: testing now.'}));
-		catch (e) {
+		} catch (e) {
 			console.log('#ERROR#: Delete User');
 			res.status(500).send(JSON.stringify({'message': 'DB Error: Delete User'}));
 		} finally {
