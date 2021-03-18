@@ -1,5 +1,6 @@
 const { Pool } = require('pg');
-const connectionString = process.env.DATABASE_URL || 'postgresql://user:user@localhost:5432/twitter_modoki';
+//const connectionString = process.env.DATABASE_URL || 'postgresql://user:user@localhost:5432/twitter_modoki';
+const connectionString = process.env.DATABASE_URL;
 /*const connectionString = {
 	database: "dqx_craftsman",
 	user: "admin",
@@ -14,6 +15,7 @@ const pool = new Pool({
 	}
 });
 
+console.log('DATABASE_URL is '+process.env.DATABASE_URL);
 /**
  * Postgresクラス
  */
