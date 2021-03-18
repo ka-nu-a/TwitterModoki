@@ -7,7 +7,12 @@ const connectionString = process.env.DATABASE_URL || 'postgresql://user:user@loc
 	host: "localhost",
 	port: 5432,
 }*/
-const pool = new Pool({ connectionString });
+const pool = new Pool({
+	connecttionString: connectionString,
+	ssl: {
+		rejectUnauthorized: false
+	}
+});
 
 /**
  * Postgresクラス

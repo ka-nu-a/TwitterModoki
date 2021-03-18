@@ -70,8 +70,10 @@ class LoginForm extends React.Component {
 			return (
 				<div className='modal-overlay' onClick={this.props.hideForm}>
 					<div className='modal-content' onClick={(e) => e.stopPropagation()}>
-						<div className='loginForm_header'><h3 className='loginForm_title'>ログイン/新規登録フォーム</h3>
-						<button className='closeButton' onClick={this.props.hideForm}>✖</button></div>
+						<div className='loginForm_header'>
+							<h3 className='loginForm_title'>ログイン/新規登録フォーム</h3>
+							<button className='closeButton' onClick={this.props.hideForm}>✖</button>
+						</div>
 						<p className='loginForm_label'>ID <input type='textbox' id='loginId' className='loginForm_textBox' onChange={e => this.cngTboxId(e)} value={this.state.id}></input></p>
 						<p className='loginForm_label'>PW <input type='password' id='loginPw' className='loginForm_textBox' onChange={e => this.cngTboxPw(e)} value={this.state.pw}></input></p>
 						<div className='loginForm_loginButtons'>
@@ -81,6 +83,61 @@ class LoginForm extends React.Component {
 					</div>
 				</div>
 			)
+		} else {
+			return null;
+		}
+	}
+}
+
+class UserInfoForm extends React.Component {
+	constructor(props) {
+		super(props);
+	}
+	
+	componentDidMount(){
+		this.setState({loginId: this.props.loginId, userName: this.props.userName, pw: '', userImage: 'https://i.pinimg.com/originals/6b/f7/7b/6bf77b973d1acaf763202b81ce08c1f4.jpg'});
+	}
+	
+	cngTboxId(tboxId){
+		this.setState({
+			loginId: tboxId.target.value
+		});
+	}
+	
+	cngTboxUserName(tboxId){
+		this.setState({
+			userName: tboxId.target.value
+		});
+	}
+	
+	cngTboxPw(tboxId){
+		this.setState({
+			pw: tboxId.target.value
+		});
+	}
+	
+	cngTboxUserImage(tboxId){
+		this.setState({
+			userImage: tboxId.target.value
+		});
+	}
+	
+	render() {
+		if(this.props.isShow){
+			return (
+				<div className='modal-overlay' onClick={this.props.hideForm}>
+					<div className='modal-content' onClick={(e) => e.stopPropagation()}>
+						<div className='loginForm_header'>
+							<h3 className='loginForm_title'>ユーザー情報変更フォーム</h3>
+							<button className='closeButton' onClick={this.props.hideForm}>✖</button>
+						</div>
+						<p className='loginForm_label'>ID <input type='textbox' id='loginId' className='loginForm_textBox' onChange={e => this.cngTboxId(e)} value={this.state.loginId}></input></p>
+						<p className='loginForm_label'>PW <input type='textbox' id='pw' className='loginForm_textBox' onChange={e => this.cngTboxUserName(e)} value={this.state.pw}></input></p>
+						<p className='loginForm_label'>名 <input type='textbox' id='userName' className='loginForm_textBox' onChange={e => this.cngTboxUserName(e)} value={this.state.userName}></input></p>
+						<p className='loginForm_header'>画像URL<br/><input type='textbox' id='userImage' className='loginForm_textBox' onChange={e => this.cngTboxUserImage(e)} value={this.state.userImage}></input><img className='loginForm_header' src={this.state.userImage} width='200' height='200'/></p>
+					</div>
+				</div>
+			);
 		} else {
 			return null;
 		}
@@ -177,7 +234,6 @@ class Account extends React.Component {
 		this.tryLoginByCookie();
 		this.setState({isShowingLoginForm: true});
 	}
-	
 	hideLoginForm(){
 		this.setState({isShowingLoginForm: false});
 	}
@@ -187,13 +243,25 @@ class Account extends React.Component {
 		Cookies.remove('login-token');
 		this.props.setUserId();
 	}
+
+	showUserInfoForm(){
+		this.setState({isShowingUserInfoForm: true});
+	}
+	hideUserInfoForm(){
+		this.setState({isShowingUserInfoForm: false});
+	}
+
+	test(){
+		console.log(this.state);
+	}
 	
 	render () {
 		if(this.state.isLogin){
 			return (
 				<div>
-					<div className='header_loginInfo'>ログイン中：{this.state.userName}さん</div>
+					<div className='header_loginInfo'>ログイン中：<a href="#" onClick={() => this.showUserInfoForm()}>{this.state.userName}</a>さん</div>
 					<button className='header_loginInfo' onClick={() => this.doLogout()}>ログアウト</button>
+					<UserInfoForm isShow={this.state.isShowingUserInfoForm} hideForm={() => this.hideUserInfoForm()} loginId={this.state.loginId} userName={this.state.userName} />
 				</div>
 			)
 		} else {
